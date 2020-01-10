@@ -1,0 +1,21 @@
+#appHeader {
+  background: rgb(12, 12, 26);
+  color: #fff;
+  font-size: 20px;
+  .alignleft {
+    float: left;
+    text-align: left;
+    width: 20%;
+  }
+  .aligncenter {
+    text-align: center;
+    float: left;
+    text-align: center;
+    width: 60%;
+  }
+  .alignright {
+    float: left;
+    text-align: right;
+    width: 20%;
+  }
+}

@@ -1,15 +1,21 @@
 {
-  "name": "todo-redux",
+  "name": "react-router-redux-saga-boilerplate",
+  "description": "Provides to start a project fast. It is useful for small or fair-sized projects",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "author": "Emre Gurler",
   "dependencies": {
     "antd": "^3.26.0",
+    "axios": "^0.19.0",
     "node-sass": "^4.13.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "redux-saga": "^1.1.3"
   },
   "scripts": {
     "start": "react-scripts start",

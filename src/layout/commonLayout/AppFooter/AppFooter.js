@@ -7,7 +7,7 @@ const { Footer } = Layout
 const AppFooter = () => {
   return (
     <React.Fragment>
-      <Footer id='appFooter'>
+      <Footer id="appFooter">
         <span>All Rights Reserved</span>
       </Footer>
     </React.Fragment>

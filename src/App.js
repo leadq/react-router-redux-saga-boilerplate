@@ -1,18 +1,48 @@
 import './App.scss'
 
 import React from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import { Layout } from 'antd'
-import { AppHeader, AppContent, AppFooter } from './app/index'
+import { connect } from 'react-redux'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import routeMap from './routes'
 
-const App = () => {
+import PrivateRoute from './shared/components/PrivateRoute'
+import ProtectedLogin from './shared/components/ProtectedLogin'
+
+const App = ({ isAuthenticated }) => {
+  const generateComponentProps = (route) => ({
+    content: route.component,
+    disableHeader: route.disableHeader,
+    disableFooter: route.disableFooter,
+  })
+  const routes = Object.values(routeMap)
   return (
-    <Layout id='mainLayout'>
-      <AppHeader />
-      <AppContent>SA</AppContent>
-      <AppFooter />
-    </Layout>
+    <Router>
+      <Switch>
+        <ProtectedLogin
+          exact
+          path={routeMap.login.path}
+          isAuthenticated={isAuthenticated}
+          component={routeMap.login.component}
+          redirectingPath={routeMap.homePage.path}
+        />
+        {routes
+          .filter((route) => route.private === true)
+          .map((route, index) => (
+            <PrivateRoute
+              key={`${index}-${route.path}`}
+              exact
+              path={route.path}
+              isAuthenticated={isAuthenticated}
+              componentProps={generateComponentProps(route)}
+            />
+          ))}
+      </Switch>
+    </Router>
   )
 }
 
-export default App
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.authReducer.isAuthenticated,
+})
+
+export default connect(mapStateToProps)(App)
